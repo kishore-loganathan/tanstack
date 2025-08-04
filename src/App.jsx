@@ -2,22 +2,22 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 const App = () => {
-  const{data,isFetching,refetch,error}=useQuery({
+  const{data,isPending,refetch,error}=useQuery({
     queryKey:["todo"],
     queryFn:getTodos,
   });
   if(error)
   {
-    alert("someyhing went wrong");
+    alert("something went wrong");
   }
   return (
     <div>
-      <div>{isFetching?<h1>loading</h1>:JSON.stringify(data.slice(0,10))
-        }
-        <button onClick={()=>refetch()}>refetch</button>
-        </div>
+      <div>
+        {isPending ? <h1>loading</h1> : JSON.stringify(data.slice(0, 10))}
+        <button onClick={() => refetch()}>refetch</button>
+      </div>
     </div>
-  )
+  );
 }
 const getTodos=async ()=>{
   await new Promise((resolve) => setTimeout(resolve, 2000));
