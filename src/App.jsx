@@ -2,10 +2,14 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 const App = () => {
-  const{data,isFetching,refetch}=useQuery({
+  const{data,isFetching,refetch,error}=useQuery({
     queryKey:["todo"],
     queryFn:getTodos,
   });
+  if(error)
+  {
+    alert("someyhing went wrong");
+  }
   return (
     <div>
       <div>{isFetching?<h1>loading</h1>:JSON.stringify(data.slice(0,10))
