@@ -2,7 +2,7 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 const App = () => {
-  const{data,isPending,refetch,error}=useQuery({
+  const{data,isSuccess,refetch,error,isPending}=useQuery({
     queryKey:["todo"],
     queryFn:getTodos,
   });
@@ -14,6 +14,7 @@ const App = () => {
     <div>
       <div>
         {isPending ? <h1>loading</h1> : JSON.stringify(data.slice(0, 10))}
+        {isSuccess?<h1>successfully loaded</h1>:<h1>something went wrong</h1>}
         <button onClick={() => refetch()}>refetch</button>
       </div>
     </div>
