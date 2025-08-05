@@ -1,17 +1,14 @@
-import React, { Suspense } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-const Profile = React.lazy(() => import("./pages/Profile"));
-function App() {
+import React from 'react'
+import TodoList from './pages/TodoList'
+import {BrowserRouter,Routes,Route} from "react-router-dom"
+const App = () => {
   return (
     <BrowserRouter>
-      <div>
-        <Suspense fallback={<p>Loading...</p>}>
-          <Routes>
-            <Route path="/profile" element={<Profile />} />
-          </Routes>
-        </Suspense>
-      </div>
+      <Routes>
+        <Route path="/" element={<TodoList />}></Route>
+      </Routes>
     </BrowserRouter>
   );
 }
-export default App;
+
+export default App
